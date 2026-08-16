@@ -3,17 +3,13 @@ services:
     container_name: postgres
     image: postgres:18
     environment:
-      # POSTGRES_USER: ${POSTGRES_USER}
-      # POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      # POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: hong
-      POSTGRES_PASSWORD: for_HENNGE
-      POSTGRES_DB: honngae_db
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     healthcheck:
-      # test: ["CMD", "pg_isready -U ${POSTGRES_USER} -d ${honngae_db}"]
-      test: ["CMD", "pg_isready -U hong -d honngae_db"]
+      test: ["CMD", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 1m30s
       timeout: 10s
       retries: 3
