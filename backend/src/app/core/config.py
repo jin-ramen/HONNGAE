@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     db_host: str = "localhost"
     db_port: int = 5432
 
-    db_echo: bool = True
+    db_echo: bool = True # set to True when debugging
     db_pre_ping: bool = True
     
 
@@ -21,10 +21,13 @@ class Settings(BaseSettings):
     @property
     def database_url(self) -> PostgresDsn:
         return PostgresDsn.build(
-            scheme="dbql+psycop",
+            scheme="postgresql+psycopg",
             username=self.db_user,
             password=self.db_password.get_secret_value(),
             host=self.db_host,
             port=self.db_port,
             path=self.db_name,
         )
+
+
+settings = Settings()
